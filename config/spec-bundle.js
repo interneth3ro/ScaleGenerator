@@ -29,6 +29,19 @@ require('zone.js/dist/sync-test');
 // RxJS
 require('rxjs/Rx');
 
+// Custom polyfills
+Array.prototype.rotateLeft = function() {
+  var t = this.shift();
+  this.push(t);
+  return t;
+}
+
+Array.prototype.rotateRight = function() {
+  var t = this.pop();
+  this.unshift(t);
+  return t;
+}
+
 var testing = require('@angular/core/testing');
 var browser = require('@angular/platform-browser-dynamic/testing');
 

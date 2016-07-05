@@ -1,30 +1,38 @@
 import {Component} from '@angular/core';
 import { NgForm } from '@angular/common';
-import { StringService } from './string.service';
 import { ScaleService } from './scale.service';
 
 @Component({
     selector: 'scale-generator',
-    providers: [StringService, ScaleService],
+    providers: [ScaleService],
     directives: [],
     pipes: [],
     styleUrls: ['./scale.generator.style.css'],
     templateUrl: './scale.generator.template.html'
 })
 export class ScaleGenerator {
-    currentTuning:string = 'standard';
-    strings:IString[] = [];
+    currentTuning: string = 'standard';
+    notes: string[];
+    modes: string[];
+    strings: IString[] = [];
     model = {
         tuning: 'standard',
-        scale: 'EMaj'
+        note: 'E',
+        mode: 'Major'
     };
 
-    constructor(public stringService: StringService, public scaleService: ScaleService) {
-        this.strings = this.stringService.getStrings(this.currentTuning);
+    constructor(public scaleService: ScaleService) {
+        this.notes = this.scaleService.getChromaticForNote('E');
+        this.modes = this.scaleService.getModes();
+        this.strings = this.scaleService.getStrings(this.currentTuning);
     }
 
     onSubmit(form) {
-        this.strings = this.stringService.getStrings(form.value.tuning);
-        this.strings = this.scaleService.setScale(form.value.scale, this.strings);
+        let scaleName: IScale = {
+            name: form.value.note,
+            mode: form.value.mode,
+            stringTuning: form.value.tuning
+        };
+        this.strings = this.scaleService.getScale(scaleName);
     }
 }

@@ -92,15 +92,21 @@ interface Array<T> {
 }
 
 interface IString {
-  tuning:string;
-  isInScale:boolean;
+  tuning: string;
+  isInScale: boolean;
   frets: IFret[];
 }
 
 interface IFret {
-  fretNumber:number;
-  noteValue:string;
-  isInScale:boolean;
+  fretNumber: number;
+  noteValue: string;
+  isInScale: boolean;
+}
+
+interface IScale {
+  name: string;
+  mode: string;
+  stringTuning: string;
 }
 
 // Extend typings

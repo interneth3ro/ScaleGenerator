@@ -10,10 +10,12 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="scale">Select Scale:</label>
-        <select id="scale" name="scale" [(ngModel)]="model.scale" #scale="ngModel">
-            <option value="EMaj">E Major</option>
-            <option value="EMin">E Minor</option>
+        <label for="note">Select Scale:</label>
+        <select id="note" name="note" [(ngModel)]="model.note" #note="ngModel">
+            <option *ngFor="let note of notes" value="{{note}}">{{ note }}</option>
+        </select>
+        <select id="mode" name="mode" [(ngModel)]="model.mode" #mode="ngModel">
+            <option *ngFor="let mode of modes" value="{{mode}}">{{ mode }}</option>
         </select>
     </div>
     <div class="form-group">
