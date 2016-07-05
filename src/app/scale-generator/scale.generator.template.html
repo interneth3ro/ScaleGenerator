@@ -1,0 +1,34 @@
+<md-card>Scale Generator</md-card>
+<form #scaleForm="ngForm" (ngSubmit)="onSubmit(scaleForm)">
+    <div class="form-group">
+        <label for="tuning">Select Tuning:</label>
+        <select id="tuning" name="tuning" [(ngModel)]="model.tuning" #tuning="ngModel">
+            <option value="standard">Standard</option>
+            <option value="dropD">Drop D</option>
+            <option value="dropC">Drop C</option>
+            <option value="openC">Open C</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="scale">Select Scale:</label>
+        <select id="scale" name="scale" [(ngModel)]="model.scale" #scale="ngModel">
+            <option value="EMaj">E Major</option>
+            <option value="EMin">E Minor</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit">Go</button>
+    </div>
+</form>
+<md-card style="padding: 5px!important;">
+    <div style="clear: both;"></div>
+    <div *ngFor="let string of strings">
+        <div class="string">
+            <h1 class="fret openString" [class.inScale]="string.isInScale">{{ string.tuning }}</h1>
+            <div class="fret" [class.inScale]="fret.isInScale" *ngFor="let fret of string.frets">
+                <span>{{ fret.noteValue }}</span>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+</md-card>

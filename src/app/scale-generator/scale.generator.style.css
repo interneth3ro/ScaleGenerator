@@ -1,0 +1,42 @@
+md-card {
+    margin: 25px;
+}
+
+.string {
+    margin: 3px;
+    width: 1280px;
+}
+
+.string::after {
+    clear: both;
+}
+
+.fret {
+    margin: 5px;
+    border-left: 1px solid black;
+    width: 35px;
+    height: 15px;
+    float: left;
+    font-size: 12px;
+    text-align: center;
+}
+
+.fretMarker {
+    margin: 5px;
+    border: 0;
+    width: 35px;
+    height: 15px;
+    float: left;
+    font-size: 12px;
+    text-align: center;
+}
+
+.openString {
+    border: 0;
+    font-size: 14px;
+}
+
+.inScale {
+    background-color: cornflowerblue;
+    color: white;
+}
