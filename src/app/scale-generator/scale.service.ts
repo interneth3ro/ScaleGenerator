@@ -15,12 +15,12 @@ export class ScaleService {
         let scale = this.determineScale(scaleName);
         
         strings.forEach((string: IString) => {
-            if (scale.indexOf(string.tuning)) {
+            if (scale.indexOf(string.tuning) >= 0) {
                 string.isInScale = true;
             }
 
             string.frets.forEach((fret: IFret) => {
-                if (scale.indexOf(fret.noteValue)) {
+                if (scale.indexOf(fret.noteValue) >= 0) {
                     fret.isInScale = true;
                 }
             });
@@ -127,17 +127,5 @@ export class ScaleService {
 
     getModes(): string[] {
         return ['Major', 'Minor', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Locrian'];
-    }
-
-    clearScale(strings: IString[]): IString[] {
-        strings.forEach((string: IString) => {
-            string.isInScale = false;
-
-            string.frets.forEach((fret: IFret) => {
-                fret.isInScale = false;
-            });
-        });
-
-        return strings;
     }
 }
