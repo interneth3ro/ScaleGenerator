@@ -7,6 +7,7 @@ export class ScaleService {
         standard: ['E', 'B', 'G', 'D', 'A', 'E'],
         dropD: ['E', 'B', 'G', 'D', 'A', 'D'],
         dropC: ['D', 'A', 'F', 'C', 'G', 'C'],
+        dropA: ['D', 'A', 'F', 'C', 'G', 'A'],
         openC: ['E', 'C', 'G', 'C', 'G', 'C']
     };
 
