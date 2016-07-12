@@ -1,38 +1,65 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
+import { GuitarService} from './guitar.service';
 import { ScaleService } from './scale.service';
 
 @Component({
   selector: 'home',
-  providers: [ScaleService],
+  providers: [ScaleService, GuitarService],
   directives: [],
   pipes: [],
   styleUrls: [ './home.style.css' ],
   templateUrl: './home.template.html'
 })
 export class Home {
+  guitars: IGuitar[];
+  tunings: ITuning[];
+  selectedGuitar: IGuitar;
+  selectedTuning: ITuning;
   currentTuning: string = 'standard';
   notes: string[];
+  selectedNote: string;
   modes: string[];
+  selectedMode: string;
   strings: IString[] = [];
-  model = {
-    tuning: 'standard',
-    note: 'E',
-    mode: 'Major'
-  };
+  scaleConfig: IScaleConfig;
   
-  constructor(public scaleService: ScaleService) {
-    this.notes = this.scaleService.getChromaticForNote('E');
-    this.modes = this.scaleService.getModes();
-    this.strings = this.scaleService.getStrings(this.currentTuning);
+  constructor(private _scaleService: ScaleService, private _guitarService: GuitarService) {
+    this.guitars = this._guitarService.getGuitars();
+    this.selectedGuitar = this.guitars[0];
+    this.tunings = this.selectedGuitar.tunings;
+    this.selectedTuning = this.tunings[0];
+
+    this.notes = this._scaleService.getChromaticForNote('E');
+    this.selectedNote = this.notes[0]
+    this.modes = this._scaleService.getModes();
+    this.selectedMode = this.modes[0];
+    
+    this.getStrings();
+  }
+
+  getStrings() {
+    this.scaleConfig = {
+      guitar: this.selectedGuitar,
+      tuning: this.selectedTuning,
+      note: this.selectedNote,
+      mode: this.selectedMode,
+    };
+
+    this.strings = this._scaleService.getStrings(this.scaleConfig);
+  }
+
+  onGuitarChange(guitar) {
+    this.selectedGuitar = guitar;
+    this.tunings = this.selectedGuitar.tunings;
+    this.selectedTuning = this.tunings[0];
+  }
+
+  onTuningChange(tuning) {
+    this.selectedTuning = tuning;
   }
 
   onSubmit(form) {
-    let scaleName: IScale = {
-      name: form.value.note,
-      mode: form.value.mode,
-      stringTuning: form.value.tuning
-    };
-    this.strings = this.scaleService.getScale(scaleName);
+    this.getStrings();
   }
 }

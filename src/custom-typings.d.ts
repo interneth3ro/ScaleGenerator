@@ -91,6 +91,23 @@ interface Array<T> {
   rotateRight():any;
 }
 
+interface IScaleConfig {
+  guitar: IGuitar;
+  tuning: ITuning;
+  note: string;
+  mode: string;
+}
+
+interface IGuitar {
+  name: string;
+  tunings: ITuning[];
+}
+
+interface ITuning {
+  name: string;
+  notes: string[]
+}
+
 interface IString {
   tuning: string;
   isInScale: boolean;

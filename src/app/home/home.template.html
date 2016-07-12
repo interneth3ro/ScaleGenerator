@@ -1,21 +1,22 @@
-<md-card>Scale Generator</md-card>
 <form #scaleForm="ngForm" (ngSubmit)="onSubmit(scaleForm)">
     <div class="form-group">
+        <label for="guitar">Select Guitar:</label>
+        <select id="guitar" name="guitar" [ngModel]="selectedGuitar" (ngModelChange)="onGuitarChange($event)">
+            <option *ngFor="let g of guitars" [ngValue]="g">{{ g.name }}</option>
+        </select>
+    </div>
+    <div class="form-group">
         <label for="tuning">Select Tuning:</label>
-        <select id="tuning" name="tuning" [(ngModel)]="model.tuning" #tuning="ngModel">
-            <option value="standard">Standard</option>
-            <option value="dropD">Drop D</option>
-            <option value="dropC">Drop C</option>
-            <option value="dropA">Drop A</option>
-            <option value="openC">Open C</option>
+        <select id="tuning" name="tuning" [ngModel]="selectedTuning" (ngModelChange)="onTuningChange($event)">
+            <option *ngFor="let t of tunings" [ngValue]="t">{{ t.name }}
         </select>
     </div>
     <div class="form-group">
         <label for="note">Select Scale:</label>
-        <select id="note" name="note" [(ngModel)]="model.note" #note="ngModel">
+        <select id="note" name="note" [(ngModel)]="selectedNote" #note="ngModel">
             <option *ngFor="let note of notes" value="{{note}}">{{ note }}</option>
         </select>
-        <select id="mode" name="mode" [(ngModel)]="model.mode" #mode="ngModel">
+        <select id="mode" name="mode" [(ngModel)]="selectedMode" #mode="ngModel">
             <option *ngFor="let mode of modes" value="{{mode}}">{{ mode }}</option>
         </select>
     </div>

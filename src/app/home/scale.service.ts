@@ -30,9 +30,9 @@ export class ScaleService {
         return strings;
     }
 
-    determineScale(scaleName: IScale): string[] {
-        let notes: string[] = this.getChromaticForNote(scaleName.name);
-        let steps: string[] = this.getStepsForMode(scaleName.mode).split('-');
+    determineScale(note: string, mode: string): string[] {
+        let notes: string[] = this.getChromaticForNote(note);
+        let steps: string[] = this.getStepsForMode(mode).split('-');
         let scale: string[] = [notes.rotateLeft()];
         for (let i = 0; i < steps.length; i++) {
             let step = steps[i];
@@ -71,30 +71,34 @@ export class ScaleService {
         }
     }
 
-    getStrings(stringTuning: string): IString[] {
+    getStrings(scaleConfig: IScaleConfig): IString[] {
         let strings: IString[] = [];
-        let tuning = this.tunings[stringTuning];
-        for (let i = 0; i < tuning.length; i++) {
-            strings.push(this.getString(tuning[i]));
+        let scale = this.determineScale(scaleConfig.note, scaleConfig.mode);
+        console.log(scale);
+        for (let i = 0; i < scaleConfig.tuning.notes.length; i++) {
+            strings.push(this.getString(scaleConfig.tuning.notes[i], scale));
         }
 
         return strings;
     }
 
-    getString(noteValue: string): IString {
+    getString(noteValue: string, scale: any): IString {
         let notes = this.getChromaticForNote(noteValue);
         let str: IString = {
-            isInScale: false,
+            isInScale: scale.indexOf(noteValue) >= 0,
             tuning: notes.rotateLeft(),
             frets:[]
         };
 
         for (let i = 1; i <= 24; i++) {
-            str.frets.push({
+            let fret: IFret = {
                 fretNumber: i,
                 noteValue: notes.rotateLeft(),
                 isInScale: false
-            });
+            };
+
+            fret.isInScale = scale.indexOf(fret.noteValue) >= 0;
+            str.frets.push(fret);
         }
         
         return str;
