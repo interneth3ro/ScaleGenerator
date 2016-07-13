@@ -8,12 +8,17 @@ import { Component, ViewEncapsulation } from '@angular/core';
     <div class="container-fluid">
       <router-outlet></router-outlet>
     </div>
+    <footer>
+      <span>Built using the WebPack Angular 2 Starter by <a [href]="angularClassUrl">@AngularClass</a></span>
+      <div>
+        <img [src]="angularClassLogo" width="25%">
+      </div>
+    </footer>
   `
 })
 export class App {
-  angularclassLogo = 'assets/img/angularclass-avatar.png';
-  loading = false;
-  name = 'Scale Generator';
+  angularClassLogo = 'assets/img/angularclass-avatar.png';
+  angularClassUrl = 'https://twitter.com/AngularClass';
 
   constructor() {}
 
