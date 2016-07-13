@@ -12,17 +12,17 @@ describe('ScaleService', () => {
 
     it('should return proper steps for Major scale', inject([ScaleService], (scaleService) => {
         let steps = scaleService.getStepsForMode('Major');
-        expect(steps).toEqual('W-W-H-W-W-W-H');
+        expect(steps).toEqual(['W', 'W', 'H', 'W', 'W', 'W', 'H']);
     }));
 
     it('should return proper steps for Minor scale', inject([ScaleService], (scaleService) => {
         let steps = scaleService.getStepsForMode('Minor');
-        expect(steps).toEqual('W-H-W-W-H-W-W');
+        expect(steps).toEqual(['W', 'H', 'W', 'W', 'H', 'W', 'W']);
     }));
 
     it('should return default steps for invalid value', inject([ScaleService], (scaleService) => {
         let steps = scaleService.getStepsForMode('Invalid');
-        expect(steps).toEqual('W-W-H-W-W-W-H');
+        expect(steps).toEqual(['W', 'W', 'H', 'W', 'W', 'W', 'H']);
     }));
 
     it('should return the chromatic scale starting on E', inject([ScaleService], (scaleService) => {
@@ -44,35 +44,17 @@ describe('ScaleService', () => {
     }));
 
     it('should return the E Major scale', inject([ScaleService], (scaleService) => {
-        let scaleName: IScale = {
-            name: 'E',
-            mode: 'Major',
-            stringTuning: 'standard'
-        };
-
-        let scale = scaleService.determineScale(scaleName);
+        let scale = scaleService.determineScale('E', 'Major');
         expect(scale).toEqual(['E', 'F#/Gb', 'G#/Ab', 'A', 'B', 'C#/Db', 'D#/Eb']);
     }));
 
     it('should return the F# Lydian scale', inject([ScaleService], (scaleService) => {
-        let scaleName: IScale = {
-            name: 'F#',
-            mode: 'Lydian',
-            stringTuning: 'standard'
-        };
-
-        let scale = scaleService.determineScale(scaleName);
+        let scale = scaleService.determineScale('F#', 'Lydian');
         expect(scale).toEqual(['F#/Gb', 'G#/Ab', 'A#/Bb', 'C', 'C#/Db', 'D#/Eb', 'F']);
     }));
 
     it('should return the Db Minor scale', inject([ScaleService], (scaleService) => {
-        let scaleName: IScale = {
-            name: 'Db',
-            mode: 'Minor',
-            stringTuning: 'standard'
-        };
-
-        let scale = scaleService.determineScale(scaleName);
+        let scale = scaleService.determineScale('Db', 'Minor');
         expect(scale).toEqual(['C#/Db', 'D#/Eb', 'E', 'F#/Gb', 'G#/Ab', 'A', 'B']);
     }));
 });

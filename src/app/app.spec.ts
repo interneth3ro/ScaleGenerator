@@ -7,17 +7,13 @@ import {
 
 // Load the implementations that should be tested
 import { App } from './app.component';
-import { AppState } from './app.service';
 
 describe('App', () => {
   // provide our implementations or mocks to the dependency injector
-  beforeEachProviders(() => [
-    AppState,
-    App
-  ]);
+  beforeEachProviders(() => [App]);
 
-  it('should have a url', inject([ App ], (app) => {
-    expect(app.url).toEqual('https://twitter.com/AngularClass');
+  it('should have a name', inject([ App ], (app) => {
+    expect(app.name).toEqual('Scale Generator');
   }));
 
 });
