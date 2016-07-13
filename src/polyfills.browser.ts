@@ -31,18 +31,6 @@ import 'zone.js/dist/zone';
 // Typescript emit helpers polyfill
 import 'ts-helpers';
 
-Array.prototype.rotateLeft = function() {
-  var t = this.shift();
-  this.push(t);
-  return t;
-}
-
-Array.prototype.rotateRight = function() {
-  var t = this.pop();
-  this.unshift(t);
-  return t;
-}
-
 if ('production' === ENV) {
   // Production
 
