@@ -7,8 +7,8 @@
     "webpack",
     "typescript"
   ],
-  "author": "Patrick Stapleton <patrick@angularclass.com>",
-  "homepage": "https://github.com/angularclass/angular2-webpack-starter",
+  "author": "James McConnell <interneth3ro@gmail.com>",
+  "homepage": "https://github.com/interneth3ro/ScaleGenerator",
   "license": "MIT",
   "scripts": {
     "rimraf": "rimraf",
