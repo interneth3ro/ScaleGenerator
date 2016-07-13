@@ -58,26 +58,7 @@ npm run watch
 npm run test
 ```
 
-### watch and run our tests
+### watch and run tests
 ```bash
 npm run watch:test
-```
-
-### run end-to-end tests
-```bash
-# make sure you have your server running in another terminal
-npm run e2e
-```
-
-### run webdriver (for end-to-end)
-```bash
-npm run webdriver:update
-npm run webdriver:start
-```
-
-### run Protractor's elementExplorer (for end-to-end)
-```bash
-npm run webdriver:start
-# in another terminal
-npm run e2e:live
 ```
