@@ -59,7 +59,7 @@ export class Home {
     this.selectedTuning = tuning;
   }
 
-  onSubmit(form) {
+  onSubmit() {
     this.getStrings();
   }
 }

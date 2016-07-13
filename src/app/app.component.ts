@@ -5,14 +5,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./app.style.css'],
   template: `
-    <md-content>
-      <md-toolbar color="primary">
-          <span>{{ name }}</span>
-          <span class="fill"></span>
-      </md-toolbar>
-      <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
+    <div class="container-fluid">
       <router-outlet></router-outlet>
-      </md-content>
+    </div>
   `
 })
 export class App {

@@ -1,38 +1,10 @@
-md-card {
-    margin: 25px;
-}
-
-.string {
-    margin: 3px;
-    width: 1280px;
-}
-
-.string::after {
-    clear: both;
-}
-
-.fret {
-    margin: 5px;
-    width: 35px;
-    height: 15px;
-    float: left;
+th, td {
     font-size: 12px;
     text-align: center;
 }
 
-.fretMarker {
-    margin: 5px;
-    border: 0;
-    width: 35px;
-    height: 15px;
-    float: left;
-    font-size: 12px;
-    text-align: center;
-}
-
-.openString {
-    border: 0;
-    font-size: 14px;
+.fretboard {
+    table-layout: fixed;
 }
 
 .inScale {
@@ -40,10 +12,6 @@ md-card {
     color: white;
 }
 
-.fret-header {
-    border-bottom: 1px solid #000;
-}
-
-.fret-footer {
-    border-top: 1px solid #000;
+.config-form {
+    margin-top: 20px;
 }

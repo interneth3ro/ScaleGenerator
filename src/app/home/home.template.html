@@ -1,100 +1,104 @@
-<md-content>
-    <form #scaleForm="ngForm" (ngSubmit)="onSubmit(scaleForm)">
-        <section layout="row">
-            <label for="guitar">Select Guitar:</label>
-            <select id="guitar" name="guitar" [ngModel]="selectedGuitar" (ngModelChange)="onGuitarChange($event)">
-                <option *ngFor="let g of guitars" [ngValue]="g">{{ g.name }}</option>
-            </select>
-        </section>
-        <section layout="row">
-            <label for="tuning">Select Tuning:</label>
-            <select id="tuning" name="tuning" [ngModel]="selectedTuning" (ngModelChange)="onTuningChange($event)">
-                <option *ngFor="let t of tunings" [ngValue]="t">{{ t.name }}
-            </select>
-        </section>
-        <section layout="row">
-            <label for="note">Select Scale:</label>
-            <select id="note" name="note" [(ngModel)]="selectedNote" #note="ngModel">
-                <option *ngFor="let note of notes" value="{{note}}">{{ note }}</option>
-            </select>
-            <select id="mode" name="mode" [(ngModel)]="selectedMode" #mode="ngModel">
-                <option *ngFor="let mode of modes" value="{{mode}}">{{ mode }}</option>
-            </select>
-        </section>
-        <section layout="row">
-            <button class="btn btn-primary btn-sm" type="submit">Go</button>
-        </section>
+<div class="config-form">
+    <form #scaleForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+            <label for="guitar" class="col-sm-2">Configure guitar</label>
+            <div class="col-sm-2">
+                <select id="guitar" name="guitar" class="form-control form-control-sm" [ngModel]="selectedGuitar" (ngModelChange)="onGuitarChange($event)">
+                    <option *ngFor="let g of guitars" [ngValue]="g">{{ g.name }}</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select id="tuning" name="tuning" class="form-control form-control-sm" [ngModel]="selectedTuning" (ngModelChange)="onTuningChange($event)">
+                    <option *ngFor="let t of tunings" [ngValue]="t">{{ t.name }}
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="tuning" class="col-sm-2">Select tuning and scale</label>
+            <div class="col-sm-2">
+                <select id="note" name="note" class="form-control form-control-sm" [(ngModel)]="selectedNote" #note="ngModel">
+                    <option *ngFor="let note of notes" value="{{note}}">{{ note }}</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select id="mode" name="mode" class="form-control form-control-sm" [(ngModel)]="selectedMode" #mode="ngModel">
+                    <option *ngFor="let mode of modes" value="{{mode}}">{{ mode }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-primary btn-sm" type="submit">Go</button>
+            </div>
+        </div>
     </form>
-</md-content>
+</div>
 
-<md-card style="padding: 5px!important;">
-    <div style="clear: both;"></div>
-    <table>
-        <thead>
-            <tr>
-                <th class="fret openString"></th>
-                <th class="fret fret-header">1</th>
-                <th class="fret fret-header">2</th>
-                <th class="fret fret-header">3</th>
-                <th class="fret fret-header">4</th>
-                <th class="fret fret-header">5</th>
-                <th class="fret fret-header">6</th>
-                <th class="fret fret-header">7</th>
-                <th class="fret fret-header">8</th>
-                <th class="fret fret-header">9</th>
-                <th class="fret fret-header">10</th>
-                <th class="fret fret-header">11</th>
-                <th class="fret fret-header">12</th>
-                <th class="fret fret-header">13</th>
-                <th class="fret fret-header">14</th>
-                <th class="fret fret-header">15</th>
-                <th class="fret fret-header">16</th>
-                <th class="fret fret-header">17</th>
-                <th class="fret fret-header">18</th>
-                <th class="fret fret-header">19</th>
-                <th class="fret fret-header">10</th>
-                <th class="fret fret-header">21</th>
-                <th class="fret fret-header">22</th>
-                <th class="fret fret-header">23</th>
-                <th class="fret fret-header">24</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let string of strings" class="string">
-                <td class="fret openString" [class.inScale]="string.isInScale">{{ string.tuning }}</td>
-                <td *ngFor="let fret of string.frets" class="fret" [class.inScale]="fret.isInScale">
-                    <span>{{ fret.noteValue }}</span>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th class="fret openString"></th>
-                <th class="fret fret-footer">1</th>
-                <th class="fret fret-footer">2</th>
-                <th class="fret fret-footer">3</th>
-                <th class="fret fret-footer">4</th>
-                <th class="fret fret-footer">5</th>
-                <th class="fret fret-footer">6</th>
-                <th class="fret fret-footer">7</th>
-                <th class="fret fret-footer">8</th>
-                <th class="fret fret-footer">9</th>
-                <th class="fret fret-footer">10</th>
-                <th class="fret fret-footer">11</th>
-                <th class="fret fret-footer">12</th>
-                <th class="fret fret-footer">13</th>
-                <th class="fret fret-footer">14</th>
-                <th class="fret fret-footer">15</th>
-                <th class="fret fret-footer">16</th>
-                <th class="fret fret-footer">17</th>
-                <th class="fret fret-footer">18</th>
-                <th class="fret fret-footer">19</th>
-                <th class="fret fret-footer">10</th>
-                <th class="fret fret-footer">21</th>
-                <th class="fret fret-footer">22</th>
-                <th class="fret fret-footer">23</th>
-                <th class="fret fret-footer">24</th>
-            </tr>
-        </tfoot>
-    </table>
-</md-card>
+<table class="table table-sm table-bordered fretboard">
+    <thead class="thead-default">
+        <tr>
+            <th>Open</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+            <th>21</th>
+            <th>22</th>
+            <th>23</th>
+            <th>24</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let string of strings" class="string">
+            <td [class.inScale]="string.isInScale">{{ string.tuning }}</td>
+            <td *ngFor="let fret of string.frets" [class.inScale]="fret.isInScale">
+                <span>{{ fret.noteValue }}</span>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr class="thead-default">
+            <th>Open</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+            <th>21</th>
+            <th>22</th>
+            <th>23</th>
+            <th>24</th>
+        </tr>
+    </tfoot>
+</table>
