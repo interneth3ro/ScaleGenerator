@@ -5,11 +5,11 @@
 Basic scale generator for guitar. Generate scales in all 12 keys for the Major key and all modes
 
 ### Quick start
-**Make sure you have Node version >= 5.0 and NPM >= 3**
+**Make sure you have at least the latest version of Node and NPM**
 
 ```bash
 # clone repo
-git clone --depth 1 https://github.com/interneth3ro/ScaleGenerator.git
+git clone https://github.com/interneth3ro/ScaleGenerator.git
 
 # change directory to repo
 cd ScaleGenerator
@@ -48,17 +48,7 @@ npm run build:prod
 npm run server:dev:hmr
 ```
 
-### watch and build files
-```bash
-npm run watch
-```
-
 ### run tests
 ```bash
 npm run test
-```
-
-### watch and run tests
-```bash
-npm run watch:test
 ```
