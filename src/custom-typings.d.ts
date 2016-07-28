@@ -94,8 +94,20 @@ interface Array<T> {
 interface IScaleConfig {
   guitar: IGuitar;
   tuning: ITuning;
-  note: string;
-  mode: string;
+  scale: IScale;
+}
+
+interface IScale {
+  name: string;
+  root: string;
+  notes: string[];
+  accidental: string;
+  modes: IMode[];
+}
+
+interface IMode {
+  name: string;
+  root: string;
 }
 
 interface IGuitar {
@@ -111,6 +123,7 @@ interface ITuning {
 interface IString {
   tuning: string;
   isInScale: boolean;
+  isRoot: boolean;
   frets: IFret[];
 }
 
@@ -118,12 +131,7 @@ interface IFret {
   fretNumber: number;
   noteValue: string;
   isInScale: boolean;
-}
-
-interface IScale {
-  name: string;
-  mode: string;
-  stringTuning: string;
+  isRoot: boolean;
 }
 
 // Extend typings

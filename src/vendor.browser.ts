@@ -23,6 +23,7 @@ import 'rxjs/add/operator/mergeMap';
 // Bootstrap support
 import 'jquery';
 import 'bootstrap-loader';
+import 'underscore';
 
 if ('production' === ENV) {
   // Production

@@ -18,7 +18,7 @@ function makeIterable(arr:string[]): any {
 
 @Injectable()
 export class ScaleService {
-    chromaticScale = ['A', 'A#/Bb', 'B', 'C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab'];
+    chromaticScale = [['A'], ['A#', 'Bb'], ['B'], ['C'], ['C#', 'Db'], ['D'], ['D#', 'Eb'], ['E'], ['F'], ['F#', 'Gb'], ['G'], ['G#', 'Ab']];
     tunings: any = {
         standard: ['E', 'B', 'G', 'D', 'A', 'E'],
         dropD: ['E', 'B', 'G', 'D', 'A', 'D'],
@@ -27,107 +27,442 @@ export class ScaleService {
         openC: ['E', 'C', 'G', 'C', 'G', 'C']
     };
 
-    determineScale(note: string, mode: string): string[] {
-        let notes = makeIterable(this.getChromaticForNote(note));
-        let steps: string[] = this.getStepsForMode(mode);
-        let scale: string[] = [notes.rotateLeft()];
-        for (let i = 0; i < steps.length; i++) {
-            let step = steps[i];
-            let note = notes.rotateLeft();
-            if (step === 'W') {
-                note = notes.rotateLeft();
-            } else if (step === 'WH') {
-                note = notes.rotateLeft();
-            }
+    scales: IScale[] = [{
+        name: 'C Major',
+        root: 'C',
+        notes: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
+        accidental: '#',
+        modes: [{
+            name: 'Ionian',
+            root: 'C'
+        }, {
+            name: 'Dorian',
+            root: 'D'
+        }, {
+            name: 'Phrygian',
+            root: 'E'
+        }, {
+            name: 'Lydian',
+            root: 'F'
+        }, {
+            name: 'Mixolydian',
+            root: 'G'
+        }, {
+            name: 'Aeolian',
+            root: 'A'
+        }, {
+            name: 'Locrian',
+            root: 'B'
+        }]
+    }, {
+        name: 'G Major',
+        root: 'G',
+        notes: ['G', 'A', 'B', 'C', 'D', 'E', 'F#'],
+        accidental: '#',
+        modes: [{
+            name: 'Ionian',
+            root: 'G'
+        }, {
+            name: 'Dorian',
+            root: 'A'
+        }, {
+            name: 'Phrygian',
+            root: 'B'
+        }, {
+            name: 'Lydian',
+            root: 'C'
+        }, {
+            name: 'Mixolydian',
+            root: 'D'
+        }, {
+            name: 'Aeolian',
+            root: 'E'
+        }, {
+            name: 'Locrian',
+            root: 'F#'
+        }]
+    }, {
+        name: 'D Major',
+        root: 'D',
+        notes: ['D', 'E', 'F#', 'G', 'A', 'B', 'C#'],
+        accidental: '#',
+        modes: [{
+            name: 'Ionian',
+            root: 'D'
+        }, {
+            name: 'Dorian',
+            root: 'E'
+        }, {
+            name: 'Phrygian',
+            root: 'F#'
+        }, {
+            name: 'Lydian',
+            root: 'G'
+        }, {
+            name: 'Mixolydian',
+            root: 'A'
+        }, {
+            name: 'Aeolian',
+            root: 'B'
+        }, {
+            name: 'Locrian',
+            root: 'C#'
+        }]
+    }, {
+        name: 'A Major',
+        root: 'A',
+        notes: ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#'],
+        accidental: '#',
+        modes: [{
+            name: 'Ionian',
+            root: 'A'
+        }, {
+            name: 'Dorian',
+            root: 'B'
+        }, {
+            name: 'Phrygian',
+            root: 'C#'
+        }, {
+            name: 'Lydian',
+            root: 'D'
+        }, {
+            name: 'Mixolydian',
+            root: 'E'
+        }, {
+            name: 'Aeolian',
+            root: 'F#'
+        }, {
+            name: 'Locrian',
+            root: 'G#'
+        }]
+    }, {
+        name: 'E Major',
+        root: 'E',
+        notes: ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'],
+        accidental: '#',
+        modes: [{
+            name: 'Ionian',
+            root: 'E'
+        }, {
+            name: 'Dorian',
+            root: 'F#'
+        }, {
+            name: 'Phrygian',
+            root: 'G#'
+        }, {
+            name: 'Lydian',
+            root: 'A'
+        }, {
+            name: 'Mixolydian',
+            root: 'B'
+        }, {
+            name: 'Aeolian',
+            root: 'C#'
+        }, {
+            name: 'Locrian',
+            root: 'D#'
+        }]
+    }, {
+        name: 'B Major',
+        root: 'B',
+        notes: ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#'],
+        accidental: '#',
+        modes: [{
+            name: 'Ionian',
+            root: 'B'
+        }, {
+            name: 'Dorian',
+            root: 'C#'
+        }, {
+            name: 'Phrygian',
+            root: 'D#'
+        }, {
+            name: 'Lydian',
+            root: 'E'
+        }, {
+            name: 'Mixolydian',
+            root: 'F#'
+        }, {
+            name: 'Aeolian',
+            root: 'G#'
+        }, {
+            name: 'Locrian',
+            root: 'A#'
+        }]
+    }, {
+        name: 'F# Major',
+        root: 'F#', 
+        notes: ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'E#'],
+        accidental: '#',
+        modes: [{
+            name: 'Ionian',
+            root: 'F#'
+        }, {
+            name: 'Dorian',
+            root: 'G#'
+        }, {
+            name: 'Phrygian',
+            root: 'A#'
+        }, {
+            name: 'Lydian',
+            root: 'B'
+        }, {
+            name: 'Mixolydian',
+            root: 'C#'
+        }, {
+            name: 'Aeolian',
+            root: 'D#'
+        }, {
+            name: 'Locrian',
+            root: 'E#'
+        }]
+    }, {
+        name: 'F Major',
+        root: 'F',
+        notes: ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'],
+        accidental: 'b',
+        modes: [{
+            name: 'Ionian',
+            root: 'F'
+        }, {
+            name: 'Dorian',
+            root: 'G'
+        }, {
+            name: 'Phrygian',
+            root: 'A'
+        }, {
+            name: 'Lydian',
+            root: 'Bb'
+        }, {
+            name: 'Mixolydian',
+            root: 'C'
+        }, {
+            name: 'Aeolian',
+            root: 'D'
+        }, {
+            name: 'Locrian',
+            root: 'E'
+        }]
+    }, {
+        name: 'Bb Major',
+        root: 'Bb',
+        notes: ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'],
+        accidental: 'b',
+        modes: [{
+            name: 'Ionian',
+            root: 'Bb'
+        }, {
+            name: 'Dorian',
+            root: 'C'
+        }, {
+            name: 'Phrygian',
+            root: 'D'
+        }, {
+            name: 'Lydian',
+            root: 'Eb'
+        }, {
+            name: 'Mixolydian',
+            root: 'F'
+        }, {
+            name: 'Aeolian',
+            root: 'G'
+        }, {
+            name: 'Locrian',
+            root: 'A'
+        }]
+    }, {
+        name: 'Eb Major',
+        root: 'Eb',
+        notes: ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D'],
+        accidental: 'b',
+        modes: [{
+            name: 'Ionian',
+            root: 'Eb'
+        }, {
+            name: 'Dorian',
+            root: 'F'
+        }, {
+            name: 'Phrygian',
+            root: 'G'
+        }, {
+            name: 'Lydian',
+            root: 'Ab'
+        }, {
+            name: 'Mixolydian',
+            root: 'Bb'
+        }, {
+            name: 'Aeolian',
+            root: 'C'
+        }, {
+            name: 'Locrian',
+            root: 'D'
+        }]
+    }, {
+        name: 'Ab Major',
+        root: 'Ab', 
+        notes: ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G'],
+        accidental: 'b',
+        modes: [{
+            name: 'Ionian',
+            root: 'Ab'
+        }, {
+            name: 'Dorian',
+            root: 'Bb'
+        }, {
+            name: 'Phrygian',
+            root: 'C'
+        }, {
+            name: 'Lydian',
+            root: 'Db'
+        }, {
+            name: 'Mixolydian',
+            root: 'Eb'
+        }, {
+            name: 'Aeolian',
+            root: 'F'
+        }, {
+            name: 'Locrian',
+            root: 'G'
+        }]
+    }, {
+        name: 'Db Major',
+        root: 'Db',
+        notes: ['Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C'],
+        accidental: 'b',
+        modes: [{
+            name: 'Ionian',
+            root: 'Db'
+        }, {
+            name: 'Dorian',
+            root: 'Eb'
+        }, {
+            name: 'Phrygian',
+            root: 'F'
+        }, {
+            name: 'Lydian',
+            root: 'Gb'
+        }, {
+            name: 'Mixolydian',
+            root: 'Ab'
+        }, {
+            name: 'Aeolian',
+            root: 'Bb'
+        }, {
+            name: 'Locrian',
+            root: 'C'
+        }]
+    }, {
+        name: 'Gb Major',
+        root: 'Gb',
+        notes: ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F'],
+        accidental: 'b',
+        modes: [{
+            name: 'Ionian',
+            root: 'Gb'
+        }, {
+            name: 'Dorian',
+            root: 'Ab'
+        }, {
+            name: 'Phrygian',
+            root: 'Bb'
+        }, {
+            name: 'Lydian',
+            root: 'Cb'
+        }, {
+            name: 'Mixolydian',
+            root: 'Db'
+        }, {
+            name: 'Aeolian',
+            root: 'Eb'
+        }, {
+            name: 'Locrian',
+            root: 'F'
+        }]
+    }];
 
-            scale.push(note);
-        }
-
-        // The result will include the octave, which we don't need
-        return scale.slice(0, -1);
-    }
-    
-    getStepsForMode(mode): string[] {
-        switch (mode) {
-            case 'Major':
-                return 'W-W-H-W-W-W-H'.split('-');
-            case 'Minor':
-                return 'W-H-W-W-H-W-W'.split('-');
-            case 'Dorian':
-                return 'W-H-W-W-W-H-W'.split('-');
-            case 'Phrygian':
-                return 'H-W-W-W-H-W-W'.split('-');
-            case 'Lydian':
-                return 'W-W-W-H-W-W-H'.split('-');
-            case 'Mixolydian':
-                return 'W-W-H-W-W-H-W'.split('-');
-            case 'Locrian':
-                return 'H-W-W-H-W-W-W'.split('-');
-            default:
-                return 'W-W-H-W-W-W-H'.split('-');
-        }
+    getScales() {
+        return this.scales;
     }
 
     getStrings(scaleConfig: IScaleConfig): IString[] {
         let strings: IString[] = [];
-        let scale = this.determineScale(scaleConfig.note, scaleConfig.mode);
+        let chromatic = this.getChromaticForScale(scaleConfig.scale);
+        console.log(chromatic);
         for (let i = 0; i < scaleConfig.tuning.notes.length; i++) {
-            strings.push(this.getString(scaleConfig.tuning.notes[i], scale));
+            let string = this.getString(scaleConfig.scale, scaleConfig.tuning.notes[i], chromatic);
+            strings.push(string);
         }
 
         return strings;
     }
 
-    getString(noteValue: string, scale: any): IString {
-        let notes = makeIterable(this.getChromaticForNote(noteValue));
+    rotateScaleToNote(noteValue: string, chromaticScale: string[]) {
+        let chromatic = makeIterable(chromaticScale);
+        let noteIndex = -1;
+        for (let i = 0; i < chromaticScale.length; i++) {
+            if (chromaticScale[i] === noteValue) {
+                noteIndex = i;
+                break;
+            }
+        }
+
+        for (let i = 0; i < noteIndex; i++) {
+            chromatic.rotateLeft();
+        }
+
+        return chromatic.source;
+    }
+
+    getString(scale: IScale, noteValue: string, chromaticScale: string[]) {
+        let chromatic = makeIterable(this.rotateScaleToNote(noteValue, chromaticScale));
         let str: IString = {
-            isInScale: scale.indexOf(noteValue) >= 0,
-            tuning: notes.rotateLeft(),
-            frets:[]
+            isInScale: scale.notes.indexOf(noteValue) >= 0,
+            isRoot: scale.root === noteValue,
+            tuning: chromatic.rotateLeft(),
+            frets: []
         };
 
         for (let i = 1; i <= 24; i++) {
             let fret: IFret = {
                 fretNumber: i,
-                noteValue: notes.rotateLeft(),
-                isInScale: false
+                noteValue: chromatic.rotateLeft(),
+                isInScale: false,
+                isRoot: false
             };
 
-            fret.isInScale = scale.indexOf(fret.noteValue) >= 0;
+            fret.isInScale = scale.notes.indexOf(fret.noteValue) >= 0;
+            fret.isRoot = scale.root === fret.noteValue;
+
             str.frets.push(fret);
         }
-        
+
         return str;
     }
 
-    // This simply shifts the master chromatic scale so that it starts
-    // on the note of our open string
-    getChromaticForNote(noteValue: string): string[] {
+    getChromaticForScale(scale: IScale): string[] {
         let chromatic = Object.assign([], this.chromaticScale);
-        let noteIndex: number = -1;
-        for (let i = 0; i < chromatic.length; i++) {
-            if (chromatic[i].indexOf('/') > 0) {
-                let notes = chromatic[i].split('/');
-                if (notes[0] === noteValue || notes[1] === noteValue) {
-                    noteIndex = i;
-                    break;
-                }
+        let chromaticScale: string[] = [];
+        let noteIndex = -1;
+        chromatic.forEach((n: string[]) => {
+            if (n.length > 1) {
+                let note = (n[0].includes(scale.accidental)) ? n[0] : n[1];
+                chromaticScale.push(note);
             } else {
-                if (chromatic[i] === noteValue) {
-                    noteIndex = i;
-                    break;
-                }
+                chromaticScale.push(n[0]);
+            }
+        });
+
+        for (let i = 0; i < chromaticScale.length; i++) {
+            if (chromaticScale[i] === scale.root) {
+                noteIndex = i;
+                break;
             }
         }
 
-        chromatic = makeIterable(chromatic);
+        let cs = makeIterable(chromaticScale);
         for (let i = 0; i < noteIndex; i++) {
-            chromatic.rotateLeft();
+            cs.rotateLeft();
         }
-        return chromatic.source;
-    }
-
-    getModes(): string[] {
-        return ['Major', 'Minor', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Locrian'];
+        return cs.source;
     }
 }

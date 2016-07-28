@@ -17,10 +17,10 @@ export class Home {
   selectedGuitar: IGuitar;
   selectedTuning: ITuning;
   currentTuning: string = 'standard';
-  notes: string[];
-  selectedNote: string;
-  modes: string[];
-  selectedMode: string;
+  scales: IScale[];
+  selectedScale: string;
+  modes: IMode[];
+  selectedMode: IMode;
   strings: IString[] = [];
   scaleConfig: IScaleConfig;
   
@@ -29,11 +29,17 @@ export class Home {
     this.selectedGuitar = this.guitars[0];
     this.tunings = this.selectedGuitar.tunings;
     this.selectedTuning = this.tunings[0];
-
-    this.notes = this._scaleService.getChromaticForNote('E');
-    this.selectedNote = this.notes[0]
-    this.modes = this._scaleService.getModes();
+    this.scales = this._scaleService.getScales();
+    this.selectedScale = this.scales[0].name;
+    this.modes = this.scales[0].modes;
     this.selectedMode = this.modes[0];
+    this.scaleConfig = {
+      guitar: this.selectedGuitar,
+      tuning: this.selectedTuning,
+      scale: this.scales.find(scale => {
+        return scale.name === this.selectedScale
+      })
+    };
     
     this.getStrings();
   }
@@ -42,9 +48,11 @@ export class Home {
     this.scaleConfig = {
       guitar: this.selectedGuitar,
       tuning: this.selectedTuning,
-      note: this.selectedNote,
-      mode: this.selectedMode,
+      scale: this.scales.find(scale => {
+        return scale.name === this.selectedScale;
+      })
     };
+    this.scaleConfig.scale.root = this.selectedMode.root;
 
     this.strings = this._scaleService.getStrings(this.scaleConfig);
   }
@@ -59,7 +67,19 @@ export class Home {
     this.selectedTuning = tuning;
   }
 
+  selectMode(mode) {
+    this.selectedMode = mode;
+    this.getStrings();
+  }
+
   onSubmit() {
+    let scale = this.scales.find(scale => {
+      return scale.name === this.selectedScale;
+    });
+
+    this.modes = scale.modes;
+    this.selectedMode = this.modes[0];
+
     this.getStrings();
   }
 }

@@ -14,15 +14,10 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="tuning" class="col-sm-2">Select tuning and scale</label>
+            <label for="scale" class="col-sm-2">Select Scale</label>
             <div class="col-sm-2">
-                <select id="note" name="note" class="form-control form-control-sm" [(ngModel)]="selectedNote" #note="ngModel">
-                    <option *ngFor="let note of notes" value="{{note}}">{{ note }}</option>
-                </select>
-            </div>
-            <div class="col-sm-2">
-                <select id="mode" name="mode" class="form-control form-control-sm" [(ngModel)]="selectedMode" #mode="ngModel">
-                    <option *ngFor="let mode of modes" value="{{mode}}">{{ mode }}</option>
+                <select id="scale" name="scale" class="form-control form-control-sm" [(ngModel)]="selectedScale" #scale="ngModel">
+                    <option *ngFor="let scale of scales" value="{{ scale.name }}">{{ scale.name }}</option>
                 </select>
             </div>
         </div>
@@ -33,7 +28,11 @@
         </div>
     </form>
 </div>
-
+<div class="mode-row" role="group">
+    <button *ngFor="let mode of modes" type="button" class="btn btn-sm mode-button" [class.btn-secondary]="mode.name !== selectedMode.name" [class.btn-info]="mode.name === selectedMode.name" (click)="selectMode(mode)">
+        {{ mode.root}} {{ mode.name }}
+    </button>
+</div>
 <table class="table table-sm table-bordered fretboard">
     <thead class="thead-default">
         <tr>
@@ -66,9 +65,17 @@
     </thead>
     <tbody>
         <tr *ngFor="let string of strings" class="string">
-            <td [class.inScale]="string.isInScale">{{ string.tuning }}</td>
-            <td *ngFor="let fret of string.frets" [class.inScale]="fret.isInScale">
-                <span>{{ fret.noteValue }}</span>
+            <td>
+                <span *ngIf="string.isInScale" class="label label-pill" [class.label-success]="string.isRoot" [class.label-info]="!string.isRoot">
+                    {{ string.tuning }}
+                </span>
+                <span *ngIf="!string.isInScale">{{ string.tuning }}</span>
+            </td>
+            <td *ngFor="let fret of string.frets">
+                <span *ngIf="fret.isInScale" class="label label-pill" [class.label-success]="fret.isRoot" [class.label-info]="!fret.isRoot">
+                    {{ fret.noteValue }}
+                </span>
+                <span *ngIf="!fret.isInScale">{{ fret.noteValue }}</span>
             </td>
         </tr>
     </tbody>

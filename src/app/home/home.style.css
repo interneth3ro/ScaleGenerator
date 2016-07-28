@@ -12,6 +12,27 @@ th, td {
     color: white;
 }
 
+.isRoot {
+    background-color: green;
+    color: white;
+}
+
 .config-form {
     margin-top: 20px;
+}
+
+.label-as-badge {
+    border-radius: 1em;
+}
+
+td span {
+    font-size: 14px;
+}
+
+.mode-row {
+    margin-bottom: 10px;
+}
+
+.mode-button {
+    margin-right: 5px;
 }
