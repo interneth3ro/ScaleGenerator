@@ -373,7 +373,6 @@ export class ScaleService {
     getStrings(scaleConfig: IScaleConfig): IString[] {
         let strings: IString[] = [];
         let chromatic = this.getChromaticForScale(scaleConfig.scale);
-        console.log(chromatic);
         for (let i = 0; i < scaleConfig.tuning.notes.length; i++) {
             let string = this.getString(scaleConfig.scale, scaleConfig.tuning.notes[i], chromatic);
             strings.push(string);

@@ -56,7 +56,7 @@ export class Home {
     };
     this.scaleConfig.scale.root = this.selectedMode.root;
 
-    this.displayScale = makeIterable(this.scaleConfig.scale.notes);
+    this.displayScale = makeIterable(this._scaleService.rotateScaleToNote(this.selectedMode.root, this.scaleConfig.scale.notes));
     this.strings = this._scaleService.getStrings(this.scaleConfig);
   }
 
