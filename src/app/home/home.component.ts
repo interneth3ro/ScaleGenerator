@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
 import { GuitarService} from './guitar.service';
 import { ScaleService } from './scale.service';
+import { makeIterable } from './makeIterable';
 
 @Component({
   selector: 'home',
@@ -23,6 +24,7 @@ export class Home {
   selectedMode: IMode;
   strings: IString[] = [];
   scaleConfig: IScaleConfig;
+  displayScale: any;
   
   constructor(private _scaleService: ScaleService, private _guitarService: GuitarService) {
     this.guitars = this._guitarService.getGuitars();
@@ -40,7 +42,7 @@ export class Home {
         return scale.name === this.selectedScale
       })
     };
-    
+
     this.getStrings();
   }
 
@@ -54,6 +56,7 @@ export class Home {
     };
     this.scaleConfig.scale.root = this.selectedMode.root;
 
+    this.displayScale = makeIterable(this.scaleConfig.scale.notes);
     this.strings = this._scaleService.getStrings(this.scaleConfig);
   }
 

@@ -20,6 +20,9 @@ export class GuitarService {
             }, {
                 name: 'Open C',
                 notes: ['E', 'C', 'G', 'C', 'G', 'C']
+            }, {
+                name: 'C6 Pedal Steel',
+                notes: ['E', 'C', 'A', 'G', 'E', 'C']
             }]
         }, {
             name: '7 String',

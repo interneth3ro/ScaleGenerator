@@ -1,20 +1,5 @@
 import { Injectable } from '@angular/core';
-
-function makeIterable(arr:string[]): any {
-  return {
-    rotateLeft: function () {
-      var t = arr.shift();
-      arr.push(t);
-      return t;
-    },
-    rotateRight: function () {
-      var t = arr.pop();
-      arr.unshift(t);
-      return t;
-    },
-    source: arr
-  };
-}
+import { makeIterable } from './makeIterable';
 
 @Injectable()
 export class ScaleService {
@@ -24,7 +9,8 @@ export class ScaleService {
         dropD: ['E', 'B', 'G', 'D', 'A', 'D'],
         dropC: ['D', 'A', 'F', 'C', 'G', 'C'],
         dropA: ['D', 'A', 'F', 'C', 'G', 'A'],
-        openC: ['E', 'C', 'G', 'C', 'G', 'C']
+        openC: ['E', 'C', 'G', 'C', 'G', 'C'],
+        c6PedalSteel: ['E', 'C', 'A', 'G', 'E', 'C']
     };
 
     scales: IScale[] = [{
