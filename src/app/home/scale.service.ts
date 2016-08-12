@@ -39,6 +39,194 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'B'
+        }],
+        scalePositions: [{
+            name: '1st Position',
+            scalePositionStrings: [{
+                scalePositionFrets: [
+                    { note: 'B', fret: 7 },
+                    { note: 'C', fret: 8 },
+                    { note: 'D', fret: 10 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'G', fret: 8 },
+                    { note: 'A', fret: 10 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'D', fret: 7 },
+                    { note: 'E', fret: 9 },
+                    { note: 'F', fret: 10 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'A', fret: 7 },
+                    { note: 'B', fret: 9 },
+                    { note: 'C', fret: 10 },
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'E', fret: 7 },
+                    { note: 'F', fret: 8 },
+                    { note: 'G', fret: 10 },
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'C', fret: 8 },
+                    { note: 'D', fret: 10 }
+                ]
+            }]
+        }, {
+            name: '2nd Position',
+            scalePositionStrings: [{
+                scalePositionFrets: [
+                    { note: 'A', fret: 5 },
+                    { note: 'B', fret: 7 },
+                    { note: 'C', fret: 8 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'E', fret: 5 },
+                    { note: 'F', fret: 6 },
+                    { note: 'G', fret: 8 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'B', fret: 4 },
+                    { note: 'C', fret: 5 },
+                    { note: 'E', fret: 7 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'G', fret: 5 },
+                    { note: 'A', fret: 7 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'D', fret: 5 },
+                    { note: 'E', fret: 7 },
+                    { note: 'F', fret: 8 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'C', fret: 8 }
+                ]
+            }]
+        }, {
+            name: '3rd Position',
+            scalePositionStrings: [{
+                scalePositionFrets: [
+                    { note: 'B', fret: 7 },
+                    { note: 'C', fret: 8 },
+                    { note: 'D', fret: 10 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'G', fret: 8 },
+                    { note: 'A', fret: 10 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'D', fret: 7 },
+                    { note: 'E', fret: 9 },
+                    { note: 'F', fret: 10 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'A', fret: 7 },
+                    { note: 'B', fret: 9 },
+                    { note: 'C', fret: 10 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'E', fret: 7 },
+                    { note: 'F', fret: 8 },
+                    { note: 'G', fret: 10 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'C', fret: 8 },
+                    { note: 'D', fret: 10 }
+                ]
+            }]
+        }, {
+            name: '4th Position',
+            scalePositionStrings: [{
+                scalePositionFrets: [
+                    { note: 'D', fret: 10 },
+                    { note: 'E', fret: 12 },
+                    { note: 'F', fret: 13 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'A', fret: 10 },
+                    { note: 'B', fret: 12 },
+                    { note: 'C', fret: 13 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'E', fret: 9 },
+                    { note: 'F', fret: 10 },
+                    { note: 'G', fret: 12 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'B', fret: 9 },
+                    { note: 'C', fret: 10 },
+                    { note: 'D', fret: 12 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'F', fret: 8 },
+                    { note: 'G', fret: 10 },
+                    { note: 'A', fret: 12 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'C', fret: 8 },
+                    { note: 'D', fret: 10 },
+                    { note: 'E', fret: 12 }
+                ]
+            }]
+        }, {
+            name: '5th Position',
+            scalePositionStrings: [{
+                scalePositionFrets: [
+                    { note: 'E', fret: 12 },
+                    { note: 'F', fret: 13 },
+                    { note: 'G', fret: 15 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'B', fret: 12 },
+                    { note: 'C', fret: 13 },
+                    { note: 'D', fret: 15 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'G', fret: 12 },
+                    { note: 'A', fret: 14 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'D', fret: 12 },
+                    { note: 'E', fret: 14 },
+                    { note: 'F', fret: 15 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'A', fret: 12 },
+                    { note: 'B', fret: 14 },
+                    { note: 'C', fret: 15 }
+                ]
+            }, {
+                scalePositionFrets: [
+                    { note: 'E', fret: 12 },
+                    { note: 'F', fret: 13 },
+                    { note: 'G', fret: 15 }
+                ]
+            }]
         }]
     }, {
         name: 'G Major',
@@ -66,7 +254,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'F#'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'D Major',
         root: 'D',
@@ -93,7 +282,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'C#'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'A Major',
         root: 'A',
@@ -120,7 +310,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'G#'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'E Major',
         root: 'E',
@@ -147,7 +338,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'D#'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'B Major',
         root: 'B',
@@ -174,7 +366,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'A#'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'F# Major',
         root: 'F#', 
@@ -201,7 +394,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'E#'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'F Major',
         root: 'F',
@@ -228,7 +422,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'E'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'Bb Major',
         root: 'Bb',
@@ -255,7 +450,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'A'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'Eb Major',
         root: 'Eb',
@@ -282,7 +478,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'D'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'Ab Major',
         root: 'Ab', 
@@ -309,7 +506,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'G'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'Db Major',
         root: 'Db',
@@ -336,7 +534,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'C'
-        }]
+        }],
+        scalePositions: []
     }, {
         name: 'Gb Major',
         root: 'Gb',
@@ -363,7 +562,8 @@ export class ScaleService {
         }, {
             name: 'Locrian',
             root: 'F'
-        }]
+        }],
+        scalePositions: []
     }];
 
     getScales() {

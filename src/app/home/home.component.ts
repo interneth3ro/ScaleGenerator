@@ -3,6 +3,7 @@ import { NgForm } from '@angular/common';
 import { GuitarService} from './guitar.service';
 import { ScaleService } from './scale.service';
 import { makeIterable } from './makeIterable';
+import * as _ from 'underscore'; 
 
 @Component({
   selector: 'home',
@@ -22,6 +23,8 @@ export class Home {
   selectedScale: string;
   modes: IMode[];
   selectedMode: IMode;
+  scalePositions: IScalePosition[];
+  selectedScalePosition: IScalePosition = { name: '', scalePositionStrings: [] };
   strings: IString[] = [];
   scaleConfig: IScaleConfig;
   displayScale: any;
@@ -35,6 +38,7 @@ export class Home {
     this.selectedScale = this.scales[0].name;
     this.modes = this.scales[0].modes;
     this.selectedMode = this.modes[0];
+    this.scalePositions = this.scales[0].scalePositions;
     this.scaleConfig = {
       guitar: this.selectedGuitar,
       tuning: this.selectedTuning,
@@ -73,6 +77,33 @@ export class Home {
   selectMode(mode) {
     this.selectedMode = mode;
     this.getStrings();
+  }
+
+  selectScalePosition(scalePosition) {
+    this.selectedScalePosition = scalePosition;
+    this.getScalePosition();
+  }
+
+  getScalePosition(): void {
+    this.clearFrets();
+    for (let i = 0; i < this.selectedScalePosition.scalePositionStrings.length; i++) {
+      var spString = this.selectedScalePosition.scalePositionStrings[i];
+      var str = this.strings[i];
+      spString.scalePositionFrets.forEach((spFret: IScalePositionFret) => {
+        var fret = _.findWhere(str.frets, { fretNumber: spFret.fret });
+        fret.isInScale = true;
+        fret.isRoot = spFret.note === this.scaleConfig.scale.root;
+      });
+    }
+  }
+
+  clearFrets(): void {
+    this.strings.forEach((str: IString) => {
+      str.frets.forEach((fret: IFret) => {
+        fret.isInScale = false;
+        fret.isRoot = false;
+      });
+    });
   }
 
   onSubmit() {

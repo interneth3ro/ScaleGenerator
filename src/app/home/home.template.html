@@ -33,6 +33,11 @@
         {{ mode.root}} {{ mode.name }}
     </button>
 </div>
+<div class="mode-row" role="group">
+    <button *ngFor="let scalePosition of scalePositions" type="button" [disabled]="selectedMode.name !== 'Ionian'" class="btn btn-sm mode-button" [class.btn-secondary]="scalePosition.name !== selectedScalePosition.name" [class.btn-info]="scalePosition.name === selectedScalePosition.name" (click)="selectScalePosition(scalePosition)">
+        {{ scalePosition.name }}
+    </button>
+</div>
 <div class="mode-row">
     {{ displayScale.source[0] }} - {{ displayScale.source[1] }} - {{ displayScale.source[2] }} - {{ displayScale.source[3] }} - {{ displayScale.source[4] }} - {{ displayScale.source[5] }} - {{ displayScale.source[6] }}
 </div>

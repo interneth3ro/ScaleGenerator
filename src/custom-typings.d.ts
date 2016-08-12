@@ -103,6 +103,21 @@ interface IScale {
   notes: string[];
   accidental: string;
   modes: IMode[];
+  scalePositions: IScalePosition[];
+}
+
+interface IScalePosition {
+  name: string;
+  scalePositionStrings: IScalePositionString[];
+}
+
+interface IScalePositionString {
+  scalePositionFrets: IScalePositionFret[];
+}
+
+interface IScalePositionFret {
+  note: string;
+  fret: number;
 }
 
 interface IMode {
